@@ -1,5 +1,5 @@
 'use client';
-import { Navigation } from '../UI/Navigation/Navigation';
+import { NavigationWrapper } from '../UI/Navigation/NavigationWrapper';
 import { BurgerButton } from '../UI/BurgerButton/BurgerButton';
 import { Logo } from '../UI/Icons/Icons';
 import { Container } from '../UI/Container/Container';
@@ -45,7 +45,7 @@ export const Header = () => {
               preserveAspectRatio="none"
             />
           </Link>
-          <Navigation
+          <NavigationWrapper
             containerClassName="hidden tablet-xl:flex items-center gap-[20px] desktop:gap-[63px]"
             itemClassName="font-montserrat text-[16px] font-400 leading-[20px] uppercase hover:opacity-80 transition-opacity duration-250 ease-in-out focus:outline-none focus:ring-0 focus:opacity-80"
             dotClassName="w-[10px] h-[10px] bg-text rounded-full"

@@ -24,7 +24,7 @@ export const FormController = ({ children }: FormControllerProps) => {
   const handleSubmit = async (data: ModalFormValues) => {
     setIsSubmitting(true);
 
-    mailFormData(data.name, data.email, '')
+    mailFormData(data.name, data.email, '', data.phoneNumber)
       .then(() => {
         setIsSubmitting(false);
         setIsOpen(false);

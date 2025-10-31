@@ -38,19 +38,15 @@ export const ServiceCard = ({
     position: {
       tl: {
         svg: 'left-[11px] bottom-[-1px] tablet-xl:left-[38px] tablet-xl:bottom-[-1px]',
-        order: 'tablet-xl:order-1',
       },
       tr: {
         svg: 'left-[-151px] bottom-[-1px] tablet-xl:left-[40px] tablet-xl:bottom-[-1px] tablet-xl:scale-x-[-1]',
-        order: 'tablet-xl:order-3',
       },
       bl: {
         svg: 'left-[11px] bottom-[-1px] tablet-xl:left-[-255px] tablet-xl:bottom-[-1px] tablet-xl:scale-x-[-1]',
-        order: 'tablet-xl:order-4',
       },
       br: {
         svg: 'left-[-151px] bottom-[-1px] tablet-xl:left-[-255px] tablet-xl:bottom-[-1px]',
-        order: 'tablet-xl:order-2',
       },
     },
   };
@@ -60,15 +56,24 @@ export const ServiceCard = ({
       className={clsx(
         variants.card.mobile[variant.mobile],
         variants.card.desktop[variant.desktop],
-        variants.position[position].order,
-        'relative overflow-hidden w-[150px] h-[180px] tablet:w-[200px] tablet:h-[200px] desktop:w-[275px] desktop:h-[371px] border border-secondary rounded-[8px] p-[11px] tablet-xl:p-[19px] flex flex-col justify-between',
+        'relative overflow-hidden w-[150px] h-[180px] tablet:w-[200px] tablet-xl:w-[230px] tablet-xl:h-[400px] desktop:w-[275px] desktop:h-[371px] border border-secondary rounded-[8px] p-[11px] tablet-xl:p-[19px] flex flex-col justify-between',
       )}
     >
       <AIconSM
-        className={`block tablet-xl:hidden w-[288px] h-[138px] absolute opacity-10 ${variants.position[position].svg} ${variants.svg[variant.mobile]} pointer-events-none`}
+        className={clsx(
+          'block tablet-xl:hidden w-[288px] h-[138px] absolute opacity-10',
+          variants.position[position].svg,
+          variants.svg[variant.mobile],
+          'pointer-events-none',
+        )}
       />
       <AIconSD
-        className={`hidden tablet-xl:block w-[489px] h-[233px] absolute opacity-10 ${variants.position[position].svg} ${variants.svg[variant.desktop]} pointer-events-none`}
+        className={clsx(
+          'hidden tablet-xl:block w-[489px] h-[233px] absolute opacity-10',
+          variants.position[position].svg,
+          variants.svg[variant.desktop],
+          'pointer-events-none',
+        )}
       />
 
       <div className="z-10">
@@ -84,7 +89,7 @@ export const ServiceCard = ({
           className={clsx(
             variants.button.mobile[variant.mobile],
             variants.button.desktop[variant.desktop],
-            'z-10 font-montserrat w-[126px] tablet:w-[170px] desktop:w-[235px] py-[8px] tablet-xl:pt-[13px] tablet-xl:pb-[14px] rounded-full text-[8px] font-normal leading-[10px] tablet-xl:text-[12px] tablet-xl:leading-[15px] text-center uppercase hover:opacity-80 transition-opacity duration-250 ease-in-out focus:outline-none focus:ring-0 focus:opacity-80',
+            'z-10 font-montserrat w-[126px] tablet:w-[170px] tablet-xl:w-[190px] desktop:w-[235px] py-[8px] tablet-xl:pt-[13px] tablet-xl:pb-[14px] rounded-full text-[8px] font-normal leading-[10px] tablet-xl:text-[12px] tablet-xl:leading-[15px] text-center uppercase hover:opacity-80 transition-opacity duration-250 ease-in-out focus:outline-none focus:ring-0 focus:opacity-80',
           )}
         >
           request a consultation

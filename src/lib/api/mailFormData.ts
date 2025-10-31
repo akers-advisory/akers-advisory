@@ -2,6 +2,7 @@ export const mailFormData = async (
   name: string,
   email: string,
   message: string,
+  phoneNumber?: string,
 ) => {
   try {
     const response = await fetch('/api/sendEmail', {
@@ -11,6 +12,7 @@ export const mailFormData = async (
         name,
         email,
         message,
+        phoneNumber,
       }),
     });
     if (!response.ok) {

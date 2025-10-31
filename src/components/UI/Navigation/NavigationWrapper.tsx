@@ -3,10 +3,11 @@
 import { Navigation } from './Navigation';
 
 interface NavigationWrapperProps {
-  closeMenu: () => void;
+  closeMenu?: () => void;
   containerClassName?: string;
   dotClassName?: string;
   itemClassName?: string;
+  className?: string;
 }
 
 export const NavigationWrapper = ({
@@ -14,6 +15,7 @@ export const NavigationWrapper = ({
   containerClassName,
   dotClassName,
   itemClassName,
+  className,
 }: NavigationWrapperProps) => {
   return (
     <div
@@ -21,18 +23,21 @@ export const NavigationWrapper = ({
         const link = (e.target as HTMLElement).closest('a');
         if (link && link.hash) {
           e.preventDefault();
-          closeMenu();
-          setTimeout(() => {
-            const targetEl = document.querySelector(
-              link.getAttribute('href') || '',
-            );
+          const targetId = link.hash.substring(1); // Remove the #
+
+          if (closeMenu) closeMenu();
+          requestAnimationFrame(() => {
+            const targetEl = document.getElementById(targetId);
             if (targetEl) {
-              targetEl.scrollIntoView({ behavior: 'smooth' });
+              targetEl.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              });
             }
-          }, 100);
+          });
         }
       }}
-      className="w-full"
+      className={className}
     >
       <Navigation
         containerClassName={containerClassName}

@@ -44,7 +44,8 @@ export const Contact = () => {
 
           <div className="tablet-xl:w-[504px] tablet-xl:h-full">
             <FramerWrapper customIndex={3}>
-              <div className="mb-[46px] tablet-xl:mb-[109px]">
+              {/*old: mb-[46px] tablet-xl:mb-[109px] */}
+              <div className="mb-[46px] tablet-xl:mb-[30px]">
                 <ContactFormDynamic />
               </div>
             </FramerWrapper>

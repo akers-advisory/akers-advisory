@@ -11,7 +11,11 @@ export interface ContactFormValues {
   name: string;
   email: string;
   message: string;
+  phoneNumber?: string;
 }
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 export const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,11 +28,13 @@ export const ContactForm = () => {
   const nameFieldId = useId();
   const emailFieldId = useId();
   const messageFieldId = useId();
+  const phoneNumberFieldId = useId();
 
   const initialValues: ContactFormValues = {
     name: '',
     email: '',
     message: '',
+    phoneNumber: '',
   };
 
   const validationSchema = Yup.object().shape({
@@ -38,6 +44,7 @@ export const ContactForm = () => {
       .email('Invalid email')
       .required('Email is required'),
     message: Yup.string().trim().required('Message is required'),
+    phoneNumber: Yup.string().matches(phoneRegExp, 'Invalid phone number'),
   });
 
   const handleSubmit = (
@@ -45,7 +52,7 @@ export const ContactForm = () => {
     actions: FormikHelpers<ContactFormValues>,
   ) => {
     setIsSubmitting(true);
-    mailFormData(values.name, values.email, values.message)
+    mailFormData(values.name, values.email, values.message, values.phoneNumber)
       .then(() => {
         setIsSubmitting(false);
         actions.resetForm();
@@ -137,6 +144,26 @@ export const ContactForm = () => {
               <ErrorMessage
                 id={`${messageFieldId}-error`}
                 name="message"
+                component="div"
+                className="absolute bottom-0 left-0 font-montserrat text-[10px] font-light leading-[12px] text-red-500 translate-y-full"
+              />
+            </div>
+            <div className="relative">
+              <label htmlFor={phoneNumberFieldId} className="sr-only">
+                Phone Number
+              </label>
+              <Field
+                id={phoneNumberFieldId}
+                name="phoneNumber"
+                placeholder="Phone Number"
+                className="w-full h-[35px] tablet-xl:h-[40px] p-[10px] font-montserrat text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] text-primary placeholder:opacity-60 border-b border-primary"
+              />
+              <span className="absolute top-[50%] right-[10px] translate-y-[-50%] font-montserrat text-[12px] font-light leading-[15px] text-primary pointer-events-none">
+                *
+              </span>
+              <ErrorMessage
+                id={`${phoneNumberFieldId}-error`}
+                name="phoneNumber"
                 component="div"
                 className="absolute bottom-0 left-0 font-montserrat text-[10px] font-light leading-[12px] text-red-500 translate-y-full"
               />

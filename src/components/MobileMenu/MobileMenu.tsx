@@ -10,7 +10,7 @@ interface MobileMenuProps {
 export const MobileMenu = ({ isOpen, closeMenu }: MobileMenuProps) => {
   return (
     <div
-      className={`desktop:hidden bg-primary py-[80px] px-[60px] fixed inset-0 z-50 h-screen w-screen tablet:w-tablet overflow-y-auto transition duration-600 ${isOpen ? 'no-doc-scroll translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}
+      className={`tablet-xl:hidden bg-primary py-[80px] px-[60px] fixed inset-0 z-50 h-screen w-screen tablet:w-tablet overflow-y-auto transition duration-300 ${isOpen ? 'no-doc-scroll translate-x-0 opacity-100' : 'translate-x-[120vw] opacity-0'}`}
     >
       <div className="max-w-mobile mx-auto flex flex-col items-center justify-between h-full">
         <button
@@ -44,6 +44,7 @@ export const MobileMenu = ({ isOpen, closeMenu }: MobileMenuProps) => {
           dotClassName="hidden"
           itemClassName="font-montserrat text-[16px] font-400 leading-[20px] hover:opacity-80 transition-opacity duration-250 ease-in-out focus:outline-none focus:ring-0 focus:opacity-80"
           closeMenu={closeMenu}
+          className="w-full"
         />
       </div>
     </div>

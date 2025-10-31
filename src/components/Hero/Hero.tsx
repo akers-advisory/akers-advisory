@@ -65,12 +65,14 @@ export const Hero = () => {
             <button className="relative mb-[20px] tablet-xl:mb-[10px] w-[312px] tablet-xl:w-[353px] h-[50px] font-montserrat text-[12px] font-400 leading-[15px] uppercase text-text rounded-full flex items-center justify-center tablet-xl:px-[20px] tablet-xl:justify-start border-text border hover:opacity-80 transition-opacity duration-250 ease-in-out focus:outline-none focus:ring-0 focus:opacity-80">
               Request a Confidential Consultation
               <span>
-                <ArrowRightIcon className="fill-text absolute top-[50%] right-[20px] translate-y-[-50%]" />
+                <ArrowRightIcon className="block tablet-xl:hidden desktop:block fill-text absolute top-[50%] right-[20px] translate-y-[-50%]" />
               </span>
             </button>
           </FormController>
-          <div className="-translate-x-[33px] tablet:translate-x-0 tablet:text-center translate-y-[20px] tablet:translate-y-[20px] tablet-xl:translate-x-[-82px] tablet-xl:translate-y-[53px] font-moglan-demo text-nowrap text-[50px] font-400 leading-[67px] tablet-xl:text-[174.658px] tablet-xl:leading-[200px] uppercase text-secondary">
-            Akers Advisory
+          <div className="overflow-visible flex justify-center translate-y-[20px] tablet:translate-y-[20px] tablet-xl:translate-y-[53px] ">
+            <h2 className="font-moglan-demo text-center text-[50px] font-400 leading-[67px] tablet-xl:text-[174.658px] tablet-xl:leading-[200px] uppercase text-secondary text-nowrap">
+              Akers Advisory
+            </h2>
           </div>
         </div>
       </Container>

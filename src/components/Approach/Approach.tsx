@@ -19,7 +19,7 @@ export const Approach = () => {
             <div className="w-[12px] h-[12px] bg-text rounded-full ml-[40px] desktop:ml-[259px] tablet-xl:w-[16px] tablet-xl:h-[16px]"></div>
           </div>
         </FramerWrapper>
-        <ul className="flex flex-wrap gap-[12px] tablet:gap-[15px] desktop:gap-[20px] mb-[41px] tablet-xl:mb-[60px] tablet:max-w-[600px] desktop:max-w-[1160px] items-center justify-center mx-auto">
+        <ul className="flex flex-wrap gap-[12px] tablet:gap-[15px] desktop:gap-[20px] mb-[41px] tablet-xl:mb-[60px] tablet:max-w-[600px] tablet-xl:max-w-[1160px] items-center justify-center mx-auto">
           <li>
             <FramerWrapper
               customIndex={1}
@@ -65,9 +65,9 @@ export const Approach = () => {
             </FramerWrapper>
           </li>
         </ul>
-        <div className="tablet-xl:flex tablet-xl:items-center tablet-xl:justify-between">
+        <div className="flex flex-col desktop:flex-row tablet-xl:items-center desktop:justify-between">
           <FramerWrapper customIndex={5}>
-            <p className="pb-[24px] tablet-xl:pb-0 text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] tablet-xl:w-[450px] text-secondary whitespace-pre-line tracking-normal tablet-xl:tracking-[-0.002em]">
+            <p className="pb-[24px] desktop:pb-0 text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] tablet-xl:w-[450px] text-secondary whitespace-pre-line tracking-normal tablet-xl:tracking-[-0.002em]">
               We begin with discretion and dialogue — understanding your
               priorities and the sensitivities surrounding them.
               <br />

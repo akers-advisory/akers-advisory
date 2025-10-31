@@ -14,7 +14,11 @@ interface ModalFormProps {
 export interface ModalFormValues {
   name: string;
   email: string;
+  phoneNumber?: string;
 }
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 export const ModalForm = ({
   onSubmit,
@@ -23,10 +27,12 @@ export const ModalForm = ({
 }: ModalFormProps) => {
   const nameFieldId = useId();
   const emailFieldId = useId();
+  const phoneNumberFieldId = useId();
 
   const initialValues: ModalFormValues = {
     name: '',
     email: '',
+    phoneNumber: '',
   };
 
   const validationSchema = Yup.object().shape({
@@ -35,6 +41,7 @@ export const ModalForm = ({
       .trim()
       .email('Invalid email')
       .required('Email is required'),
+    phoneNumber: Yup.string().matches(phoneRegExp, 'Invalid phone number'),
   });
 
   const handleSubmit = (
@@ -112,6 +119,27 @@ export const ModalForm = ({
                 <ErrorMessage
                   id={`${emailFieldId}-error`}
                   name="email"
+                  component="div"
+                  className="absolute bottom-0 left-0 font-montserrat text-[10px] font-light leading-[12px] text-red-500 translate-y-full"
+                />
+              </div>
+              <div className="relative w-full">
+                <label htmlFor={phoneNumberFieldId} className="sr-only">
+                  Phone Number
+                </label>
+                <Field
+                  id={phoneNumberFieldId}
+                  name="phoneNumber"
+                  type="text"
+                  placeholder="Phone Number"
+                  className="w-full h-[35px] tablet-xl:h-[40px] p-[10px] font-montserrat text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] text-primary placeholder:opacity-60 border-b border-primary"
+                />
+                <span className="absolute top-[50%] right-[10px] translate-y-[-50%] font-montserrat text-[12px] font-light leading-[15px] text-primary pointer-events-none">
+                  *
+                </span>
+                <ErrorMessage
+                  id={`${phoneNumberFieldId}-error`}
+                  name="phoneNumber"
                   component="div"
                   className="absolute bottom-0 left-0 font-montserrat text-[10px] font-light leading-[12px] text-red-500 translate-y-full"
                 />

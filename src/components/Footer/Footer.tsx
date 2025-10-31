@@ -1,4 +1,4 @@
-import { Navigation } from '../UI/Navigation/Navigation';
+import { NavigationWrapper } from '../UI/Navigation/NavigationWrapper';
 import { Logo } from '../UI/Icons/Icons';
 import { Container } from '../UI/Container/Container';
 import { FramerWrapper } from '../UI/FramerWrapper/FramerWrapper';
@@ -21,7 +21,7 @@ export const Footer = () => {
           </Link>
         </FramerWrapper>
         <FramerWrapper customIndex={1}>
-          <Navigation
+          <NavigationWrapper
             dotClassName="hidden tablet-xl:block tablet-xl:w-[10px] tablet-xl:h-[10px] tablet-xl:bg-text tablet-xl:rounded-full"
             containerClassName="flex flex-col items-center gap-[24px] mb-[46px] tablet-xl:mb-[55px] tablet-xl:flex-row tablet-xl:justify-between"
             itemClassName="relative font-montserrat text-[16px] font-400 leading-[20px] w-full tablet-xl:w-auto text-center uppercase before:content-[''] before:absolute before:top-[50%] before:left-0 before:translate-y-[-50%] before:w-[10px] before:h-[10px] before:bg-text before:rounded-full after:content-[''] after:absolute after:top-[50%] after:right-0 after:translate-y-[-50%] after:w-[10px] after:h-[10px] after:bg-text after:rounded-full tablet-xl:before:hidden tablet-xl:after:hidden hover:opacity-80 transition-opacity duration-250 ease-in-out focus:outline-none focus:ring-0 focus:opacity-80"

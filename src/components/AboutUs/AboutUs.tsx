@@ -19,7 +19,7 @@ export const AboutUs = () => {
           <div className="text-[12px] font-300 leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] tablet-xl:w-[329px]">
             <FramerWrapper customIndex={2}>
               <p className="mb-[24px] tracking-normal tablet-xl:mb-[16px] tablet-xl:tracking-[-0.008em]">
-                Akers Solutions is a boutique consultancy offering strategic
+                Akers Advisory is a boutique consultancy offering strategic
                 insight, discreet problem-solving, and private office
                 management.
               </p>
@@ -55,30 +55,30 @@ export const AboutUs = () => {
           </div>
         </div>
 
-        <div className="relative pt-[60px] tablet-xl:pt-[37px] flex flex-col justify-between tablet-xl:flex-row-reverse tablet-xl:items-center">
+        <div className="relative pt-[60px] tablet:pt-[40px] tablet-xl:pt-[37px] flex flex-col justify-between tablet-xl:flex-row-reverse tablet-xl:items-center">
           <FramerWrapper
             customIndex={4}
-            className="absolute top-[-10px] left-[-348px] tablet-xl:top-[-10px] desktop:left-[295px] tablet:left-[150px]"
+            className="absolute top-[-10px] left-[-348px] tablet-xl:left-[200px] tablet-xl:top-[-10px] desktop:left-[295px] tablet:left-[150px]"
           >
             <AIconAM className="block tablet-xl:hidden w-[599px] h-[285px] tablet:w-[400px] tablet:h-[200px] fill-primary" />
-            <AIconAD className="hidden tablet-xl:block w-[601px] h-[286px] fill-primary" />
+            <AIconAD className="hidden tablet-xl:block desktop:w-[601px] desktop:h-[286px] fill-primary" />
           </FramerWrapper>
-          <div className="absolute tablet-xl:hidden tablet:bottom-[121px] bottom-[95px] right-1/2 translate-x-[50%] w-screen h-[10px] bg-primary"></div>
+          <div className="absolute tablet-xl:hidden tablet:bottom-[73px] bottom-[95px] right-1/2 translate-x-[50%] w-screen h-[10px] bg-primary"></div>
 
           <ul className="flex flex-col items-end mb-[136px] tablet:mb-[60px] tablet-xl:mb-0 text-[32px] font-400 leading-[43px] tablet-xl:text-[48px] tablet-xl:leading-[64px] uppercase">
             <FramerWrapper customIndex={5}>
               <li>
-                <h3>Discretion.</h3>
+                <h3>Discretion</h3>
               </li>
             </FramerWrapper>
             <FramerWrapper customIndex={6}>
               <li>
-                <h3>Trust.</h3>
+                <h3>Trust</h3>
               </li>
             </FramerWrapper>
             <FramerWrapper customIndex={7}>
               <li>
-                <h3>Results.</h3>
+                <h3>Results</h3>
               </li>
             </FramerWrapper>
           </ul>

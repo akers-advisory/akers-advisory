@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, message, phoneNumber } = body;
 
     // Validate input
     if (!name || !email) {
@@ -34,6 +34,7 @@ export async function POST(request: Request) {
       text: `
 Name: ${name}
 Email: ${email}
+Phone Number: ${phoneNumber}
 
 Message:
 ${message}
@@ -42,6 +43,7 @@ ${message}
         <h2>New Request</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone Number:</strong> ${phoneNumber}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
       `,

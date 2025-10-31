@@ -34,6 +34,12 @@ export const Services = () => {
     },
   ];
 
+  const sortedCardsData = [
+    ...cardsData.filter((card) => card.position === 'tl'),
+    ...cardsData.filter((card) => card.position === 'br'),
+    ...cardsData.filter((card) => card.position === 'tr'),
+    ...cardsData.filter((card) => card.position === 'bl'),
+  ];
   return (
     <div
       id="services"
@@ -55,8 +61,8 @@ export const Services = () => {
           </h2>
         </FramerWrapper>
 
-        <ul className="flex flex-wrap gap-[12px] tablet-xl:gap-[20px] tablet:max-w-[600px] desktop:max-w-[1160px] items-center justify-center mx-auto">
-          {cardsData.map((data, index) => (
+        <ul className="flex flex-wrap gap-[12px] tablet-xl:gap-[20px] tablet:max-w-[600px] tablet-xl:max-w-[1160px] items-center justify-center mx-auto">
+          {sortedCardsData.map((data, index) => (
             <li key={data.title}>
               <FramerWrapper customIndex={index + 2}>
                 <ServiceCard
