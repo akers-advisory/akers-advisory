@@ -1,0 +1,181 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #141414;
+  --color-text: #ffffff;
+  --color-secondary: #bdbdbd;
+
+  --breakpoint-mobile: 360px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-tablet-xl: 1024px;
+  --breakpoint-desktop: 1280px;
+  --breakpoint-desktop-xl: 1920px;
+
+  --container-mobile: 360px;
+  --container-tablet: 768px;
+  --container-tablet-xl: 1024px;
+  --container-desktop: 1280px;
+  --container-desktop-xl: 1920px;
+
+  --font-montserrat: var(--font-montserrat);
+  --font-moglan-demo: var(--font-moglan-demo);
+  --font-bodoni-moda: var(--font-bodoni-moda);
+  --font-athelas: var(--font-athelas);
+  --font-junge: var(--font-junge);
+}
+
+@layer base {
+  body {
+    @apply bg-primary text-text relative;
+  }
+
+  p {
+    @apply tracking-[-0.008em];
+  }
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'MoglanDemo', sans-serif;
+}
+
+.font-moglan-demo {
+  font-family: 'MoglanDemo', sans-serif;
+  font-display: swap;
+  font-weight: 400;
+}
+
+.text-text {
+  color: #ffffff;
+}
+
+.bg-primary {
+  background-color: #141414;
+}
+
+:root:has(.no-doc-scroll) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+.trapezoid {
+  clip-path: polygon(0 100%, 0 0, 100% 0, 62.4% 100%);
+
+  @media (min-width: 768px) {
+    clip-path: polygon(0 100%, 0 0, 100% 0, 87% 100%);
+  }
+
+  @media (min-width: 1280px) {
+    clip-path: polygon(0 100%, 0 0, 100% 0, 92% 100%);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 20s linear infinite;
+  will-change: transform;
+  white-space: nowrap;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+input {
+  outline: none;
+  margin: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Loader CSS Animations */
+@keyframes loaderFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loaderFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.loader-container {
+  animation: loaderFadeIn 0.3s ease-in-out;
+}
+
+.loader-fade-out {
+  animation: loaderFadeOut 1s ease-in-out forwards;
+}
+
+.loader-fade-in {
+  animation: loaderFadeIn 0.3s ease-in-out;
+}
