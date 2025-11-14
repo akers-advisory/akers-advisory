@@ -1,8 +1,9 @@
 'use client';
-import { useId } from 'react';
+import { useId, ChangeEvent, FocusEvent } from 'react';
 import { ArrowRightIcon, CloseButtonIcon, LoaderIcon } from '../UI/Icons/Icons';
 import * as Yup from 'yup';
-import { Formik, FormikHelpers, Field, ErrorMessage, Form } from 'formik';
+import { Formik, FormikHelpers, Field, ErrorMessage, Form, useFormikContext } from 'formik';
+import { IMaskInput } from 'react-imask';
 import { FramerWrapper } from '../UI/FramerWrapper/FramerWrapper';
 
 interface ModalFormProps {
@@ -14,11 +15,66 @@ interface ModalFormProps {
 export interface ModalFormValues {
   name: string;
   email: string;
-  phoneNumber?: string;
+  phoneNumber: string;
 }
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+// More permissive international phone regex - accepts various formats with/without country codes
+
+const phoneRegExp = /^[\+]?[0-9]{1,4}[\s]?[(]?[0-9]{1,4}[)]?[\s]?[0-9]{1,4}[\s\-]?[0-9]{1,9}$/;
+
+const PhoneNumberField = ({ fieldId }: { fieldId: string }) => {
+  const { setFieldValue } = useFormikContext<ModalFormValues>();
+
+  return (
+    <div className="relative w-full">
+      <label htmlFor={fieldId} className="sr-only">
+        Phone Number
+      </label>
+      <Field name="phoneNumber">
+        {({
+          field,
+          meta,
+        }: {
+          field: { name: string; value: string; onChange: (e: ChangeEvent<HTMLInputElement>) => void; onBlur: (e: FocusEvent<HTMLInputElement>) => void };
+          meta: { touched: boolean; error?: string };
+        }) => (
+          <IMaskInput
+            {...field}
+            id={fieldId}
+            mask="+1 (000) 000-0000"
+            lazy={true}
+            overwrite={false}
+            prepare={(appended: string, masked: { value: string }) => {
+              // If user starts typing a digit without +, prepend +
+              if (appended && /^\d/.test(appended) && !masked.value.startsWith('+')) {
+                return '+' + appended;
+              }
+              return appended;
+            }}
+            autoComplete="tel"
+            type="tel"
+            placeholder="Phone Number"
+            className={`w-full h-[35px] tablet-xl:h-[40px] p-[10px] pr-[30px] font-montserrat text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] text-primary placeholder:opacity-60 border-b ${
+              meta.touched && meta.error ? 'border-red-500' : 'border-primary'
+            }`}
+            onAccept={(value: string) => {
+              setFieldValue('phoneNumber', value || '');
+            }}
+          />
+        )}
+      </Field>
+      <span className="absolute top-[50%] right-[10px] translate-y-[-50%] font-montserrat text-[12px] font-light leading-[15px] text-primary pointer-events-none">
+        *
+      </span>
+      <ErrorMessage
+        id={`${fieldId}-error`}
+        name="phoneNumber"
+        component="div"
+        className="absolute bottom-0 left-0 font-montserrat text-[12px] leading-[14px] tablet-xl:text-[14px] tablet-xl:leading-[16px] font-medium text-red-500 translate-y-full"
+      />
+    </div>
+  );
+};
 
 export const ModalForm = ({
   onSubmit,
@@ -41,7 +97,9 @@ export const ModalForm = ({
       .trim()
       .email('Invalid email')
       .required('Email is required'),
-    phoneNumber: Yup.string().matches(phoneRegExp, 'Invalid phone number'),
+    phoneNumber: Yup.string()
+      .required('Phone number is required')
+      .matches(phoneRegExp, 'Invalid phone number'),
   });
 
   const handleSubmit = (
@@ -90,7 +148,7 @@ export const ModalForm = ({
                   name="name"
                   type="text"
                   placeholder="Name"
-                  className="w-full h-[35px] tablet-xl:h-[40px] p-[10px] font-montserrat text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] text-primary placeholder:opacity-60 border-b border-primary"
+                  className="w-full h-[35px] tablet-xl:h-[40px] p-[10px] pr-[30px] font-montserrat text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] text-primary placeholder:opacity-60 border-b border-primary"
                 />
                 <span className="absolute top-[50%] right-[10px] translate-y-[-50%] font-montserrat text-[12px] font-light leading-[15px] text-primary pointer-events-none">
                   *
@@ -99,7 +157,7 @@ export const ModalForm = ({
                   id={`${nameFieldId}-error`}
                   name="name"
                   component="div"
-                  className="absolute bottom-0 left-0 font-montserrat text-[10px] font-light leading-[12px] text-red-500 translate-y-full"
+                  className="absolute bottom-0 left-0 font-montserrat text-[12px] leading-[14px] tablet-xl:text-[14px] tablet-xl:leading-[16px] font-medium text-red-500 translate-y-full"
                 />
               </div>
               <div className="relative w-full">
@@ -111,7 +169,7 @@ export const ModalForm = ({
                   name="email"
                   type="email"
                   placeholder="Email"
-                  className="w-full h-[35px] tablet-xl:h-[40px] p-[10px] font-montserrat text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] text-primary placeholder:opacity-60 border-b border-primary"
+                  className="w-full h-[35px] tablet-xl:h-[40px] p-[10px] pr-[30px] font-montserrat text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] text-primary placeholder:opacity-60 border-b border-primary"
                 />
                 <span className="absolute top-[50%] right-[10px] translate-y-[-50%] font-montserrat text-[12px] font-light leading-[15px] text-primary pointer-events-none">
                   *
@@ -120,30 +178,10 @@ export const ModalForm = ({
                   id={`${emailFieldId}-error`}
                   name="email"
                   component="div"
-                  className="absolute bottom-0 left-0 font-montserrat text-[10px] font-light leading-[12px] text-red-500 translate-y-full"
+                  className="absolute bottom-0 left-0 font-montserrat text-[12px] leading-[14px] tablet-xl:text-[14px] tablet-xl:leading-[16px] font-medium text-red-500 translate-y-full"
                 />
               </div>
-              <div className="relative w-full">
-                <label htmlFor={phoneNumberFieldId} className="sr-only">
-                  Phone Number
-                </label>
-                <Field
-                  id={phoneNumberFieldId}
-                  name="phoneNumber"
-                  type="text"
-                  placeholder="Phone Number"
-                  className="w-full h-[35px] tablet-xl:h-[40px] p-[10px] font-montserrat text-[12px] font-light leading-[15px] tablet-xl:text-[16px] tablet-xl:leading-[20px] text-primary placeholder:opacity-60 border-b border-primary"
-                />
-                <span className="absolute top-[50%] right-[10px] translate-y-[-50%] font-montserrat text-[12px] font-light leading-[15px] text-primary pointer-events-none">
-                  *
-                </span>
-                <ErrorMessage
-                  id={`${phoneNumberFieldId}-error`}
-                  name="phoneNumber"
-                  component="div"
-                  className="absolute bottom-0 left-0 font-montserrat text-[10px] font-light leading-[12px] text-red-500 translate-y-full"
-                />
-              </div>
+              <PhoneNumberField fieldId={phoneNumberFieldId} />
             </div>
             <button
               type="submit"
